@@ -1,0 +1,20 @@
+package com.example.employee_api.author.service;
+import com.example.employee_api.author.model.Author;
+import com.example.employee_api.author.repository.AuthorRepository;
+import org.springframework.stereotype.Service;
+import java.util.List;
+@Service
+public class AuthorServiceImpl implements
+AuthorService{
+        private final
+        AuthorRepository authorRepository;
+        public
+    AuthorServiceImpl(AuthorRepository authorRepository){
+            this.authorRepository=authorRepository;
+        }
+        @Override
+                public List<Author> getAllAuthors(){
+            return authorRepository.findAll();
+        }
+    }
+
