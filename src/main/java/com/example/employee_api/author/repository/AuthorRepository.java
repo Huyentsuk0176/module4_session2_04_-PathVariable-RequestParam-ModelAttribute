@@ -19,4 +19,10 @@ public class AuthorRepository {
     public void save(Author author){
         authors.add(author);
     }
+    public Author findById(Long id){
+        return authors.stream()
+                .filter(a -> a.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
 }

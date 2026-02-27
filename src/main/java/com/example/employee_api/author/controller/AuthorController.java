@@ -1,6 +1,8 @@
 package com.example.employee_api.author.controller;
 import com.example.employee_api.author.model.Author;
 import com.example.employee_api.author.service.AuthorService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
@@ -20,5 +22,16 @@ public class AuthorController {
     public Author createAuthor(@RequestBody Author author){
         return
                 authorService.createAuthor(author);
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<?>
+    getById(@PathVariable Long id){
+        Author author=authorService.findById(id);
+        if (author==null){
+            return
+                    ResponseEntity.status(HttpStatus.NOT_FOUND).body("author not found");
+        }
+        return
+                ResponseEntity.ok(author);
     }
 }

@@ -21,5 +21,10 @@ AuthorService{
             authorRepository.save(author);
             return author;
         }
+    @Override
+    public Author findById(Long id) {
+        return authorRepository.findById(id);
+
+    }
     }
 
