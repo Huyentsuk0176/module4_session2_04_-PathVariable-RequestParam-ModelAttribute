@@ -2,6 +2,7 @@ package com.example.employee_api.order.controller;
 
 import com.example.employee_api.order.model.Order;
 import com.example.employee_api.order.service.OrderService;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,5 +31,12 @@ public class OrderController {
     @GetMapping("/sort")
     public List<Order> sortOrders(@RequestParam String sortBy, @RequestParam String dir){
         return orderService.getAllOrdersSorted(sortBy, dir);
+    }
+    @GetMapping("/paging")
+    public Page<Order> getOrdersPaging(
+            @RequestParam int page,
+            @RequestParam int size){
+
+        return orderService.getOrdersPaged(page, size);
     }
 }

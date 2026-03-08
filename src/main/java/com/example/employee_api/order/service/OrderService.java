@@ -3,6 +3,8 @@ package com.example.employee_api.order.service;
 import com.example.employee_api.order.model.Order;
 import com.example.employee_api.order.repository.OrderRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
@@ -31,5 +33,12 @@ public class OrderService {
             sort=Sort.by(field).ascending();
         }
         return orderRepository.findAll(sort);
+    }
+    public Page<Order> getOrdersPaged(int page, int size) {
+
+        PageRequest pageable =
+                PageRequest.of(page, size, Sort.by("createdAt").descending());
+
+        return orderRepository.findAll(pageable);
     }
 }
