@@ -5,6 +5,8 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Max;
 
 @Getter
 @Setter
@@ -17,4 +19,11 @@ public class StudentDTO {
 
     @NotBlank(message = "Major cannot be blank")
     private String major;
+    @Min(value = 18, message = "Age must be at least 18")
+    private int age;
+
+    @Min(value = 0, message = "GPA must be at least 0")
+    @Max(value = 10, message = "GPA must be at most 10")
+    private Double gpa;
+
 }
