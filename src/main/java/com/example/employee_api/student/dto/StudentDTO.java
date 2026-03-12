@@ -7,11 +7,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Pattern;
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class StudentDTO {
+    @NotBlank(message = "Student code cannot be blank")
+    @Pattern(regexp = "^SV\\d{4}$", message = "Student code must follow format SVxxxx (Example: SV0001)")
+    private String studentCode;
+
 
     @NotBlank(message = "Full name cannot be blank")
     @Size(min = 5, max = 100, message = "Full name must be between 5 and 100 characters")
